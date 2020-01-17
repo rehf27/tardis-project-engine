@@ -1,4 +1,4 @@
-import Game from 'src/models/game';
+import Game from '../../src/models/game';
 
 export default class StatusUpdate {
 	target: Object;
