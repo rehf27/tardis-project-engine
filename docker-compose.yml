@@ -1,0 +1,36 @@
+version: '3'
+services:
+  tardis:
+    build: .
+    command: yarn run start:dev
+    volumes:
+      - ./intent:/app
+      - /app/node_modules/
+    depends_on:
+      - redis
+      - mongo
+    ports:
+      - 3000:3000
+    env_file: secrets/local.intent.env
+    networks:
+      - tardis
+  mongo:
+    image: postgres:10.4
+    ports:
+      - 5432:5432
+    volumes:
+      - pg-bp:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    networks:
+      - bp
+
+volumes:
+  mongo-tardis:
+    external: true
+
+networks:
+  tardis:
+    external: true

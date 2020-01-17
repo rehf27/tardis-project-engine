@@ -7,7 +7,7 @@ This project attempts to provide a back-end service able to serve as a game serv
 
 For details about this project, please refer to the following articles:
 
-+ General project plan and architecture: https://www.smashingmagazine.com/2018/12/multiplayer-text-adventure-engine-node-js/
++ General project plan and architecture: https://server.ts.smashingmagazine.com/2018/12/multiplayer-text-adventure-engine-node-js/
 + Game server development and details: TBD
 + CLI client development and details: TBD
 + Chat server details: TBd

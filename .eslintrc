@@ -1,0 +1,11 @@
+{
+    "extends": "@dialexa/eslint-config-dialexa/node-es6",
+    "parserOptions": {
+      "ecmaVersion": 8
+    },
+    "rules": {
+      "indent": [2, "tab"],
+      "arrow-parens": ["error", "as-needed"],
+      "no-unused-expressions": ["error", { "allowShortCircuit": true }]
+    }
+  }
