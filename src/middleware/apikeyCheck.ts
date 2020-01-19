@@ -6,7 +6,8 @@ export const apiCheck = (req, res, next) => {
 
     let URL = req.url;
     let publicURLs = [
-        "/clients"
+        "/clients",
+        "/ping"
     ];
     logger.info(URL);
     if (publicURLs.indexOf(URL) != -1) return next();

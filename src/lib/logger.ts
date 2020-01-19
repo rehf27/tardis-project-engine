@@ -25,4 +25,4 @@ const newLogger = (logLabel = '') => {
 	});
 };
 
-export default newLogger('Integration Adapter Router');
+export default newLogger('Tardis Game Engine');

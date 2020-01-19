@@ -8,7 +8,7 @@ import users from './users';
 
 export default [
 	ping,
-	// clients,
+	clients,
 	// games,
 	// users
 ];

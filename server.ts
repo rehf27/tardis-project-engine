@@ -43,7 +43,7 @@ routes.forEach((route: any) => {
   const schema: ISchema = route.schema || {};
   const next = (req, res, nxt) => nxt();
 
-  // If the request has schema, validate the requests agains the schema
+  // If the request has schema, validate the requests against the schema
   const validateBody = schema.body ? validator.body(schema.body as any) : next;
   const validateParams = schema.params ? validator.params(schema.params as any) : next;
   const validateQuery = schema.query ? validator.query(schema.query as any) : next;
