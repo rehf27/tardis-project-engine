@@ -1,33 +1,59 @@
 version: '3'
 services:
-  tardis:
-    build: .
-    command: yarn run start:dev
-    volumes:
-      - ./intent:/app
-      - /app/node_modules/
-    depends_on:
-      - redis
-      - mongo
-    ports:
-      - 3000:3000
-    env_file: secrets/local.intent.env
-    networks:
-      - tardis
-  mongo:
-    image: postgres:10.4
-    ports:
-      - 5432:5432
-    volumes:
-      - pg-bp:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_DB: postgres
-    networks:
-      - bp
+#  tardis:
+#    build: .
+#    command: yarn run start:dev
+#    container_name: tardis
+#    volumes:
+#      - ./intent:/app
+#      - /app/node_modules/
+#    depends_on:
+#      - redis
+#      - mongo
+#    ports:
+#      - 3000:3000
+#    env_file: secrets/local.intent.env
+#    networks:
+#      - tardis
+redis:
+  image: redis
+  container_name: redis
+  expose:
+    - 6379
+  networks:
+    - tardis
+mongo:
+  container_name: mongo
+  image: mongo
+  ports:
+      - "27017:27017"
+  environment:
+    MONGO_INITDB_DATABASE: games
+    MONGO_INITDB_ROOT_USERNAME: tardis
+    MONGO_INITDB_ROOT_PASSWORD: gamer
+  volumes:
+    - ./db/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo-js:ro
+    - mongo-tardis:/data/db
+  networks:
+    - tardis
+postgres:
+  image: postgres
+  container_name: "postgres"
+  restart: always
+  environment:
+    POSTGRES_PASSWORD: gamer
+    POSTGRES_DB: games
+    POSTGRES_USER: tardis
+  ports:
+    - "5432:5432"
+  volumes:
+   - pg-tardis::/var/lib/postgresql/data
+  networks:
+   - tardis
 
 volumes:
+  pg-tardis:
+    external: true
   mongo-tardis:
     external: true
 

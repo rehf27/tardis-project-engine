@@ -29,7 +29,7 @@ export default {
 		}
 	},
 	mongoose: {
-		connection_string: 'mongodb://localhost/test'
+		connection_string: 'mongodb://localhost/games'
 	},
 	clientKeys: {
 		ttl: 2592000
